@@ -1,9 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import recipes from "../data/recipes.json";
 import RecipeCard from "../components/RecipeCard";
 
 export default function Home() {
   const [search, setSearch] = useState("");
+
+  // Add scroll restoration effect
+  useEffect(() => {
+    // Restore scroll position when Home component mounts
+    const savedScrollPosition = sessionStorage.getItem('recipeListScrollPosition');
+    console.log('Saved scroll position:', savedScrollPosition); // Debug log
+    
+    if (savedScrollPosition) {
+      // Use setTimeout to ensure the DOM is fully rendered
+      setTimeout(() => {
+        console.log('Restoring scroll to:', savedScrollPosition); // Debug log
+        window.scrollTo({
+          top: parseInt(savedScrollPosition, 10),
+          behavior: 'auto' // Use 'auto' for instant scroll
+        });
+        // Clear the saved position after restoring
+        sessionStorage.removeItem('recipeListScrollPosition');
+      }, 100);
+    }
+  }, []);
 
   const filtered = recipes.filter((r) =>
     r.name.toLowerCase().includes(search.toLowerCase())
@@ -55,15 +75,15 @@ export default function Home() {
         />
 
         {/* Recipes */}
-             <div className="row">
-        {filtered.length > 0 ? (
-          filtered.map((recipe) => (
-            <RecipeCard key={recipe.id} recipe={recipe} />
-          ))
-        ) : (
-          <p className="text-muted text-center">No recipes found.</p>
-        )}
-      </div>
+        <div className="row">
+          {filtered.length > 0 ? (
+            filtered.map((recipe) => (
+              <RecipeCard key={recipe.id} recipe={recipe} />
+            ))
+          ) : (
+            <p className="text-muted text-center">No recipes found.</p>
+          )}
+        </div>
       </div>
     </div>
   );

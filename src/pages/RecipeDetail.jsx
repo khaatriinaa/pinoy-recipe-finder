@@ -54,6 +54,11 @@ export default function RecipeDetail() {
 
   const isFavorite = favorites.some((f) => f.id === recipe.id);
 
+  const handleBackClick = () => {
+    // Navigate back to the home page where recipe cards are displayed
+    navigate('/');
+  };
+
   return (
     <div className="recipe-detail-container">
       <div className="container py-5">
@@ -87,7 +92,7 @@ export default function RecipeDetail() {
               <div className="d-flex gap-3 mb-4">
                 <button
                   className="back-button btn shadow-sm"
-                  onClick={() => navigate(-1)}
+                  onClick={handleBackClick}
                 >
                   <i className="bi bi-arrow-left me-2"></i>
                   Back to Recipes
