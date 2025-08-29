@@ -1,0 +1,179 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+body {
+  background-color: #fdf6ec;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+  font-family: 'Segoe UI', 'Poppins', sans-serif;
+  font-size: 2rem; 
+  font-weight: 700;
+  color: #212529; 
+  margin-bottom: 1.5rem; 
+  line-height: 1.3;
+  text-transform: capitalize;
+}
+
+.text-yellow {
+  color: #ffc107;
+}
+
+.hero-section {
+  gap: 10px;
+  background-color: #ffe8d6;
+}
+
+.hero-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image {
+  max-width: 110%; 
+  transform: scale(1.1); 
+}
+
+.recipe-card {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.image-wrapper {
+  position: relative;
+}
+
+.dish-name-tag {
+  position: relative;
+  background: #f4b942;
+  color: white;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin: 0;
+  z-index: 2;
+}
+
+.recipe-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-wrapper:hover .overlay {
+  opacity: 1;
+}
+
+.overlay .btn {
+  font-weight: 600;
+}
+
+.recipe-info {
+  padding-top: 2px;
+  padding-bottom: 20px;
+}
+
+.recipe-description {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #666;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+/* Palette Accent */
+:root {
+  --accent: #f4b942;
+  --accent-dark: #d89e2f;
+}
+
+/* Recipe Detail */
+.recipe-badge {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.recipe-title {
+  font-weight: 700;
+  color: #333;
+}
+
+.favorite-btn {
+  border: 2px solid var(--accent);
+  transition: 0.2s ease;
+}
+
+.favorite-btn.btn-add {
+  color: var(--accent);
+  background: white;
+}
+
+.favorite-btn.btn-add:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.favorite-btn.btn-remove {
+  color: white;
+  background: #dc3545;
+  border-color: #dc3545;
+}
+
+.recipe-section-header {
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+}
+
+.step-badge {
+  background: var(--accent);
+  color: white;
+  font-weight: bold;
+}
+
+/* Keep card style consistent */
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.back-button {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 50px;
+  transition: 0.2s ease;
+}
+
+.back-button:hover {
+  background: var(--accent-dark);
+  color: #fff;
+}
