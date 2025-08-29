@@ -41,7 +41,7 @@ export default function RecipeDetail() {
   const navigate = useNavigate();
   const { favorites, addFavorite, removeFavorite } =
     useContext(FavoritesContext);
-    
+
   const recipe = recipes.find((r) => r.id.toString() === id);
 
   useEffect(() => {
@@ -95,7 +95,7 @@ export default function RecipeDetail() {
                 {recipe.description}
               </p>
               {/* Action Buttons (Back + Favorite side by side) */}
-              <div className="d-flex gap-3 mb-4">
+              <div className="d-flex gap-2 mb-4">
                 <button
                   className="back-button btn shadow-sm"
                   onClick={handleBackClick}
