@@ -55,7 +55,8 @@ export default function RecipeDetail() {
   const isFavorite = favorites.some((f) => f.id === recipe.id);
 
   const handleBackClick = () => {
-    // Navigate back to the home page where recipe cards are displayed
+    // Set flag to indicate we should restore scroll position
+    sessionStorage.setItem('shouldRestoreScroll', 'true');
     navigate('/');
   };
 

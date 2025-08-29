@@ -7,11 +7,14 @@ export default function Home() {
 
   // Add scroll restoration effect
   useEffect(() => {
-    // Restore scroll position when Home component mounts
+    // Only restore scroll position if coming from a recipe detail page
     const savedScrollPosition = sessionStorage.getItem('recipeListScrollPosition');
-    console.log('Saved scroll position:', savedScrollPosition); // Debug log
+    const shouldRestore = sessionStorage.getItem('shouldRestoreScroll');
     
-    if (savedScrollPosition) {
+    console.log('Saved scroll position:', savedScrollPosition); // Debug log
+    console.log('Should restore:', shouldRestore); // Debug log
+    
+    if (savedScrollPosition && shouldRestore === 'true') {
       // Use setTimeout to ensure the DOM is fully rendered
       setTimeout(() => {
         console.log('Restoring scroll to:', savedScrollPosition); // Debug log
@@ -21,7 +24,12 @@ export default function Home() {
         });
         // Clear the saved position after restoring
         sessionStorage.removeItem('recipeListScrollPosition');
+        sessionStorage.removeItem('shouldRestoreScroll');
       }, 100);
+    } else {
+      // Clear any leftover data if we're not supposed to restore
+      sessionStorage.removeItem('recipeListScrollPosition');
+      sessionStorage.removeItem('shouldRestoreScroll');
     }
   }, []);
 

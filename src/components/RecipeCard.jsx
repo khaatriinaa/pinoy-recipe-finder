@@ -6,6 +6,7 @@ export default function RecipeCard({ recipe }) {
     const currentScrollPos = window.scrollY || window.pageYOffset;
     console.log('Saving scroll position:', currentScrollPos); // Debug log
     sessionStorage.setItem('recipeListScrollPosition', currentScrollPos.toString());
+    // Don't set restore flag here - only when coming back from recipe detail
   };
 
   return (
