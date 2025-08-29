@@ -6,10 +6,10 @@ export default function Header() {
   const { favorites } = useContext(FavoritesContext);
 
   return (
-    <nav className="navbar navbar-expand-lg shadow-sm" style={{ backgroundColor: "#f5a623" }}>
+    <nav className="navbar navbar-expand-lg shadow-sm fixed-top" style={{ backgroundColor: "#f5a623", zIndex: 1000 }}>
       <div className="container">
         <Link className="navbar-brand fw-bold text-white" to="/">
-          🍲 Filipino Cookbook
+          Filipino Cookbook
         </Link>
         <div className="collapse navbar-collapse">
           <ul className="navbar-nav ms-auto">
@@ -18,7 +18,7 @@ export default function Header() {
             </li>
             <li className="nav-item">
               <Link className="nav-link fw-bold text-white" to="/favorites">
-                Favorites ❤️{" "}
+                Favorites {" "}
                 <span className="badge bg-light text-dark">
                   {favorites.length}
                 </span>

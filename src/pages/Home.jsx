@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="d-flex align-items-center justify-content-between px-5 py-5 hero-section">
+      <section className="d-flex align-items-center justify-content-center gap-4 px-5 py-5 hero-section">
         <div className="col-md-6">
           <h6 className="text-yellow fw-bold">WELCOME</h6>
           <h1 className="fw-bold display-5">
@@ -48,7 +48,7 @@ export default function Home() {
 
         <input
           type="text"
-          placeholder="🔍 Search recipe..."
+          placeholder="Search recipe..."
           className="form-control mb-4"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
