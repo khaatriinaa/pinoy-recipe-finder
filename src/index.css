@@ -16,6 +16,15 @@ h2 {
   text-transform: capitalize;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 56px;
+}
+
+#recipes-section {
+  scroll-margin-top: 56px;
+}
+
 .text-yellow {
   color: #ffc107;
 }
