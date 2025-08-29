@@ -7,29 +7,23 @@ export default function Home() {
 
   // Add scroll restoration effect
   useEffect(() => {
-    // Only restore scroll position if coming from a recipe detail page
+    // Check if we should restore scroll position
+    const shouldRestoreScroll = sessionStorage.getItem('shouldRestoreScroll');
     const savedScrollPosition = sessionStorage.getItem('recipeListScrollPosition');
-    const shouldRestore = sessionStorage.getItem('shouldRestoreScroll');
     
-    console.log('Saved scroll position:', savedScrollPosition); // Debug log
-    console.log('Should restore:', shouldRestore); // Debug log
-    
-    if (savedScrollPosition && shouldRestore === 'true') {
-      // Use setTimeout to ensure the DOM is fully rendered
+    if (shouldRestoreScroll === 'true' && savedScrollPosition) {
+      // Use setTimeout to ensure DOM is fully rendered
       setTimeout(() => {
-        console.log('Restoring scroll to:', savedScrollPosition); // Debug log
         window.scrollTo({
           top: parseInt(savedScrollPosition, 10),
-          behavior: 'auto' // Use 'auto' for instant scroll
+          behavior: 'instant' // No smooth scrolling effect
         });
-        // Clear the saved position after restoring
-        sessionStorage.removeItem('recipeListScrollPosition');
+        
+        // Clear the flags
         sessionStorage.removeItem('shouldRestoreScroll');
-      }, 100);
-    } else {
-      // Clear any leftover data if we're not supposed to restore
-      sessionStorage.removeItem('recipeListScrollPosition');
-      sessionStorage.removeItem('shouldRestoreScroll');
+        sessionStorage.removeItem('recipeListScrollPosition');
+        sessionStorage.removeItem('cameFromFavorites'); // Also clear this flag
+      }, 0);
     }
   }, []);
 

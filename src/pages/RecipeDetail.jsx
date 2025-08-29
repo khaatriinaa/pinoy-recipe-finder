@@ -41,7 +41,7 @@ export default function RecipeDetail() {
   const navigate = useNavigate();
   const { favorites, addFavorite, removeFavorite } =
     useContext(FavoritesContext);
-
+    
   const recipe = recipes.find((r) => r.id.toString() === id);
 
   useEffect(() => {
@@ -56,6 +56,12 @@ export default function RecipeDetail() {
 
   const handleBackClick = () => {
     // Set flag to indicate we should restore scroll position
+    sessionStorage.setItem('shouldRestoreScroll', 'true');
+    navigate('/');
+  };
+
+  const handleBackToFavorites = () => {
+    // Set flag to indicate we should restore scroll position when going back to homepage
     sessionStorage.setItem('shouldRestoreScroll', 'true');
     navigate('/');
   };
@@ -88,8 +94,7 @@ export default function RecipeDetail() {
               <p className="recipe-description lead text-muted mb-4">
                 {recipe.description}
               </p>
-
-              {/* ✅ Action Buttons (Back + Favorite side by side) */}
+              {/* Action Buttons (Back + Favorite side by side) */}
               <div className="d-flex gap-3 mb-4">
                 <button
                   className="back-button btn shadow-sm"
@@ -98,7 +103,16 @@ export default function RecipeDetail() {
                   <i className="bi bi-arrow-left me-2"></i>
                   Back to Recipes
                 </button>
-
+                {/* Add back button if coming from favorites */}
+                {sessionStorage.getItem('cameFromFavorites') && (
+                  <button
+                    className="back-button btn shadow-sm"
+                    onClick={handleBackToFavorites}
+                  >
+                    <i className="bi bi-arrow-left me-2"></i>
+                    Back to Home
+                  </button>
+                )}
                 <button
                   className={`btn rounded-pill favorite-btn ${
                     isFavorite ? "btn-remove" : "btn-add"
